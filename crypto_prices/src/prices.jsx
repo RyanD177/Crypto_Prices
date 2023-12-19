@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import {useEffect, useState } from 'react'
 //When the component intially mounts, should make a request to the api
@@ -30,7 +31,34 @@ export default function CryptoPrices() {
 
   return (
     <>
-        <h1> Hello</h1>
+    <table>
+        <caption>Crypto Prices</caption>
+        <thead>
+            <th scope="col">Coin</th>
+            <th scope="col">Price</th>
+            <th scope="col">Market Cap</th>
+        </thead>
+        <tbody>
+            {coins.map(coin => {
+               return  <tr key={coin.name}>
+                    <th scope="row">{coin.name}</th>
+                    <td>{coin.price}</td>
+                    <td>{coin.marketCap}</td>
+                </tr>
+            })}
+        </tbody>
+    </table>
+    <button disabled={page <= 0 } onClick={() => {
+        setPage(page -1)
+    }}>
+        Back
+    </button>
+
+    <button disabled={!hasNext} onClick={() => {
+        setPage(page +1)
+    }}>
+        Next
+    </button>
     </>
   );
 }
